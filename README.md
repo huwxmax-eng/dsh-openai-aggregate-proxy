@@ -30,8 +30,10 @@ WorkBuddy（或任意 AI 助手）会自动完成：**克隆 → 检查 Node →
 
 **获取步骤：**
 1. 注册/登录腾讯云：https://cloud.tencent.com（新用户送 2000 万 token 免费额度）
-2. 进入腾讯云控制台：https://console.cloud.tencent.com
-3. 找到 **API Key 管理** 页面 → 点击「**创建 API Key**」
+2. 打开 **API Key 管理** 页面（不是 WorkBuddy 客户端，是腾讯云控制台 TokenHub 页面）：
+   - 国际版：https://console.tencentcloud.com/tokenhub/apikey
+   - 国内版：登录 https://console.cloud.tencent.com 后搜索 "TokenHub / API Key"
+3. 点击「**创建 API Key**」
 4. 如创建时有"访问范围"选项，**务必勾选 `deepseek-v4-flash` 和 `deepseek-v4-pro`**
 5. 复制并妥善保管生成的 `ck_` 开头 key
 6. 把 key 交给 WorkBuddy 自动部署时填上，或手动填进 `config.json` 的 `upstreams[].apiKey`

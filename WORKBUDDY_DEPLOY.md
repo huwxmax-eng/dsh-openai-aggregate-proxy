@@ -21,14 +21,15 @@
 1. 询问用户是否已有腾讯云账号：
    - 有 → 直接下一步
    - 没有 → 请用户打开 https://cloud.tencent.com 注册（AI 可以帮忙打开浏览器，但注册/登录由用户本人完成）
-2. 让用户打开腾讯云控制台：https://console.cloud.tencent.com
-3. 指引用户进入 **API Key 管理** 页面（控制台搜索"API Key"或按官方文档路径进入）
-4. 点击「**创建 API Key**」：
+2. **打开 API Key 管理页面**（不是 WorkBuddy 客户端个人中心，是腾讯云控制台 TokenHub 页面）：
+   - 国际版：https://console.tencentcloud.com/tokenhub/apikey
+   - 国内版：登录 https://console.cloud.tencent.com 后在搜索框搜"TokenHub / API Key"
+3. 点击「**创建 API Key**」：
    - 如果创建时有"访问范围/限定范围"选项，**务必勾选 `deepseek-v4-flash` 和 `deepseek-v4-pro`**
    - 其他选项按默认即可
-5. 创建完成后让用户**复制并妥善保管**这把 `ck_` 开头的 key（提示：不要外泄，token 会被用光）
-6. 用户把 key 粘贴给 AI 后，**只写入本机 config.json**，严禁写入聊天记录以外的任何公开位置
-7. 继续第 1 步部署
+4. 创建完成后让用户**复制并妥善保管**这把 `ck_` 开头的 key（提示：不要外泄，token 会被用光）
+5. 用户把 key 粘贴给 AI 后，**只写入本机 config.json**，严禁写入聊天记录以外的任何公开位置
+6. 继续第 1 步部署
 
 **引导时给用户的参考信息**（官方文档依据）：
 - TokenHub 接口地址（若用户问"这 key 配什么地址"）：`https://tokenhub.tencentcloudmaas.com/v1/chat/completions`
