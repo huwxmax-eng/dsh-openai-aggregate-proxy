@@ -141,6 +141,8 @@ llm-pi-ai:
 - 仅监听 127.0.0.1，不要把端口暴露到公网
 - 配置里的上游 key 不要提交到仓库（建议 `.gitignore` config.json）
 - 请遵守各上游服务商的服务条款
+- 上游端点可能随服务商策略变化（如 `copilot.tencent.com` 为实测可用端点，非官方公开 API）；若失效，请改用官方公开端点（腾讯云 TokenHub：`https://tokenhub.tencentcloudmaas.com/v1/chat/completions`），改 `config.json` 里对应 `upstreams[].url` 即可
+- 本项目仅提供本地代理能力，token 消耗与账号风控责任均由使用者自行承担
 
 ## License
 
