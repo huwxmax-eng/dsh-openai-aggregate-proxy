@@ -2,6 +2,40 @@
 
 为 **DeepSeek Harness (dsh)** 设计的本地 OpenAI 兼容**聚合代理**：把多个上游模型网关（任意 OpenAI 兼容 API）暴露成一套标准接口，dsh 通过一个 provider 即可按模型名自动路由到不同上游。
 
+## 🚀 用 WorkBuddy 自动部署（最简单的上手方式）
+
+**你只需要两样东西：** ① 一个上游 API key（见下方"获取 key"）；② 把这个链接发给你的 WorkBuddy：
+
+```
+https://github.com/huwxmax-eng/dsh-openai-aggregate-proxy
+```
+
+配合这句话（把 `<你的key>` 换成你自己的）：
+
+> 请按 https://github.com/huwxmax-eng/dsh-openai-aggregate-proxy 仓库的 WORKBUDDY_DEPLOY.md 自动部署这个项目，我的上游 API key 是：`<你的key>`
+
+WorkBuddy（或任意 AI 助手）会自动完成：**克隆 → 检查 Node → 生成配置 → 填你的 key → 启动代理 → 验证 → 接入 dsh**，最后把结果汇报给你。全程约 5 分钟，不需要自己敲命令。
+
+## 🔑 如何获取自己的 API key（腾讯云 Token Plan）
+
+腾讯云 **Token Plan** 是"包月 Token 套餐"，按模型抵扣、DeepSeek V4 Flash/Pro 原厂直供，兼容 OpenAI / Anthropic 协议，适合 dsh、codex、cursor 等编程/智能体工具。
+
+| 档位 | 月费 | 月度 Tokens | 适合 |
+|---|---|---|---|
+| Lite | ¥39 | 3,500 万 | 首次体验（约 70 轮问答） |
+| Standard | ¥99 | 1 亿 | 日常使用（约 200 轮） |
+| Pro | ¥299 | 3.2 亿 | 高频 AI 开发 |
+| Max | ¥599 | 6.5 亿 | 重度 AI 开发 |
+
+**获取步骤：**
+1. 注册/登录腾讯云：https://cloud.tencent.com
+2. 打开 Token Plan 活动页：https://cloud.tencent.com/act/pro/tokenplan
+3. 选择套餐购买（买完套餐即可，无需额外充值）
+4. 在套餐页找到「**生成 API 密钥**」，复制那把 `ck_` 开头的 key
+5. 把 key 交给 WorkBuddy 自动部署时填上，或手动填进 `config.json` 的 `upstreams[].apiKey`
+
+> 也支持 DeepSeek 官方 key（`sk_` 开头，api.deepseek.com 按量付费）或任意 OpenAI 兼容服务。
+
 ## 解决什么问题
 
 dsh（DeepSeek Harness）通过 OpenAI 兼容协议对接模型服务。当你有多个上游（官方 API、聚合站、本地模型等）时，本代理让你：
