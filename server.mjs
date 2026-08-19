@@ -364,5 +364,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, LISTEN, () => {
-  log(`[wb-bridge] listening on http://${LISTEN}:${PORT}  upstreams=${UPSTREAMS.map(u => u.name).join(',')}  model=${DEFAULT_MODEL}`);
+  log(`[dsh-aggregate-proxy] listening on http://${LISTEN}:${PORT}  upstreams=${UPSTREAMS.map(u => u.name).join(',')}  model=${DEFAULT_MODEL}`);
 });
