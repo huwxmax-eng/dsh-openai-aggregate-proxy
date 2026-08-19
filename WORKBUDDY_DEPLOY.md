@@ -96,6 +96,13 @@ curl -s -X POST http://127.0.0.1:8787/v1/chat/completions \
 - 若上游报错（如 401/403），把完整错误告诉用户，指导检查 key
 
 ### 7.（可选）接入 dsh（DeepSeek Harness）
+
+> **⚠️ 重要：本仓库没有 dsh 插件形态，不要安装任何 plugin 到 dsh！**
+> 代理是**独立进程**（第 5 步的 `server.mjs`），dsh 通过下面的 provider 路由接入即可。
+> 若之前误把某 `plugin/` 目录作为 dsh 插件 include 进 `~/.dsh/profiles/web/cordis.patch.yml`，
+> dsh 会启动崩溃（`plugin tree failed to load ... Cannot find package '@deepseek-ai/schemastery'`），
+> 从 cordis.patch.yml 删除该 insert 条目并重启即可恢复。
+
 如果用户装了 dsh 并要求接入：
 1. `~/.dsh/.credentials.yaml` 追加：`WB_BRIDGE_KEY: <PROXY_KEY>`
 2. `~/.dsh/settings.yaml` 的 `llm-pi-ai.providers` 追加（保留原有 providers）：
@@ -127,4 +134,5 @@ llm-pi-ai:
 - 只监听 127.0.0.1，禁止把端口暴露到公网
 - config.json 权限保持 600
 - 不要上传/泄露用户提供的 key 到任何地方（包括不要提交到 git）
+- **不要**把任何 `plugin/` 目录作为 dsh 插件安装（本仓库无插件形态，独立进程即可）
 - 遇到任何一步失败：停下并向用户说明原因，不要跳过验证

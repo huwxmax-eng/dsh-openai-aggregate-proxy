@@ -99,6 +99,10 @@ llm-pi-ai:
 
 改完 settings.yaml 重启 dsh web，模型下拉里就会出现 `my-proxy` 组。
 
+> **⚠️ 注意：本仓库没有 dsh 插件形态，请勿把任何 `plugin/` 目录安装为 dsh 插件。**
+> 代理以独立进程运行（`node server.mjs`），dsh 通过上面的 provider 路由（`openai-completions` + `baseURL`）接入即可。
+> 误装插件会导致 dsh 启动崩溃（`Cannot find package '@deepseek-ai/schemastery'`），从 `~/.dsh/profiles/web/cordis.patch.yml` 移除该条目即可恢复。
+
 ## config.json 字段
 
 | 字段 | 说明 |
