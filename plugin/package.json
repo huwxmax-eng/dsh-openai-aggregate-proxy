@@ -1,0 +1,21 @@
+{
+  "name": "dsh-openai-aggregate-proxy",
+  "version": "0.1.0",
+  "description": "OpenAI-compatible local aggregate proxy for DeepSeek Harness (dsh): route multiple upstream model gateways by model name; chat/responses protocol translation; tool-calling support; zero-dependency single-file Node.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "server.mjs"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "openai-compatible",
+    "proxy",
+    "aggregator",
+    "llm",
+    "cordis"
+  ]
+}
