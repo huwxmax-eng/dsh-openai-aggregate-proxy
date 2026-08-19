@@ -7,7 +7,32 @@
 
 > 请按 https://github.com/huwxmax-eng/dsh-openai-aggregate-proxy 仓库的 WORKBUDDY_DEPLOY.md 自动部署这个项目，我的上游 API key 是：`<用户自己提供的 key>`
 
+> 如果用户**还没有 key**，用下面的启动句（AI 会引导用户现场创建一个）：
+>
+> > 请按 https://github.com/huwxmax-eng/dsh-openai-aggregate-proxy 仓库的 WORKBUDDY_DEPLOY.md 自动部署这个项目，我还没有 API key，请先引导我创建一个。
+
 ## 执行清单
+
+### 0. 引导用户获取自己的 API Key（如果用户没有）
+
+**重要事实**：这个项目的上游 key 来自腾讯云 **TokenHub / Token Plan**（与 WorkBuddy 同一腾讯云账号体系）。**新注册用户默认有 2000 万 token 免费额度，无需绑卡**。AI 助手负责引导，创建动作必须用户本人完成（涉及登录与密钥保管）。
+
+引导步骤（AI 逐步执行，每步等用户确认）：
+1. 询问用户是否已有腾讯云账号：
+   - 有 → 直接下一步
+   - 没有 → 请用户打开 https://cloud.tencent.com 注册（AI 可以帮忙打开浏览器，但注册/登录由用户本人完成）
+2. 让用户打开腾讯云控制台：https://console.cloud.tencent.com
+3. 指引用户进入 **API Key 管理** 页面（控制台搜索"API Key"或按官方文档路径进入）
+4. 点击「**创建 API Key**」：
+   - 如果创建时有"访问范围/限定范围"选项，**务必勾选 `deepseek-v4-flash` 和 `deepseek-v4-pro`**
+   - 其他选项按默认即可
+5. 创建完成后让用户**复制并妥善保管**这把 `ck_` 开头的 key（提示：不要外泄，token 会被用光）
+6. 用户把 key 粘贴给 AI 后，**只写入本机 config.json**，严禁写入聊天记录以外的任何公开位置
+7. 继续第 1 步部署
+
+**引导时给用户的参考信息**（官方文档依据）：
+- TokenHub 接口地址（若用户问"这 key 配什么地址"）：`https://tokenhub.tencentcloudmaas.com/v1/chat/completions`
+- 免费额度说明：新用户 2000 万 token（无需绑卡）；WorkBuddy 应用内积分（签到/邀请/礼包）是另一套体系，**不能导出为 key**，本项目用的是 API Key
 
 ### 1. 克隆仓库
 ```bash

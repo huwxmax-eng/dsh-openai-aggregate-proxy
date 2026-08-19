@@ -16,24 +16,28 @@ https://github.com/huwxmax-eng/dsh-openai-aggregate-proxy
 
 WorkBuddy（或任意 AI 助手）会自动完成：**克隆 → 检查 Node → 生成配置 → 填你的 key → 启动代理 → 验证 → 接入 dsh**，最后把结果汇报给你。全程约 5 分钟，不需要自己敲命令。
 
-## 🔑 如何获取自己的 API key（腾讯云 Token Plan）
+## 🔑 如何获取自己的 API key（腾讯云 TokenHub / Token Plan）
 
-腾讯云 **Token Plan** 是"包月 Token 套餐"，按模型抵扣、DeepSeek V4 Flash/Pro 原厂直供，兼容 OpenAI / Anthropic 协议，适合 dsh、codex、cursor 等编程/智能体工具。
+腾讯云 **TokenHub / Token Plan** 是"包月/配额 Token"体系，按模型抵扣、DeepSeek V4 Flash/Pro 原厂直供，兼容 OpenAI / Anthropic 协议，适合 dsh、codex、cursor 等编程/智能体工具。**新注册用户默认有 2000 万 token 免费额度，无需绑卡**。
 
 | 档位 | 月费 | 月度 Tokens | 适合 |
 |---|---|---|---|
-| Lite | ¥39 | 3,500 万 | 首次体验（约 70 轮问答） |
+| 新用户免费额度 | ¥0 | 2,000 万 | 首次体验 |
+| Lite | ¥39 | 3,500 万 | 轻度使用（约 70 轮问答） |
 | Standard | ¥99 | 1 亿 | 日常使用（约 200 轮） |
 | Pro | ¥299 | 3.2 亿 | 高频 AI 开发 |
 | Max | ¥599 | 6.5 亿 | 重度 AI 开发 |
 
 **获取步骤：**
-1. 注册/登录腾讯云：https://cloud.tencent.com
-2. 打开 Token Plan 活动页：https://cloud.tencent.com/act/pro/tokenplan
-3. 选择套餐购买（买完套餐即可，无需额外充值）
-4. 在套餐页找到「**生成 API 密钥**」，复制那把 `ck_` 开头的 key
-5. 把 key 交给 WorkBuddy 自动部署时填上，或手动填进 `config.json` 的 `upstreams[].apiKey`
+1. 注册/登录腾讯云：https://cloud.tencent.com（新用户送 2000 万 token 免费额度）
+2. 进入腾讯云控制台：https://console.cloud.tencent.com
+3. 找到 **API Key 管理** 页面 → 点击「**创建 API Key**」
+4. 如创建时有"访问范围"选项，**务必勾选 `deepseek-v4-flash` 和 `deepseek-v4-pro`**
+5. 复制并妥善保管生成的 `ck_` 开头 key
+6. 把 key 交给 WorkBuddy 自动部署时填上，或手动填进 `config.json` 的 `upstreams[].apiKey`
 
+> 若配置在 WorkBuddy 自定义模型里，接口地址填：`https://tokenhub.tencentcloudmaas.com/v1/chat/completions`
+> 注意：WorkBuddy 应用内的"积分"（签到/礼包/邀请）是另一套体系，**不能导出为 API key**；本项目用的是上述 API Key。
 > 也支持 DeepSeek 官方 key（`sk_` 开头，api.deepseek.com 按量付费）或任意 OpenAI 兼容服务。
 
 ## 解决什么问题
