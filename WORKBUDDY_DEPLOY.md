@@ -18,18 +18,21 @@
 **重要事实**：这个项目的上游 key 来自腾讯云 **TokenHub / Token Plan**（与 WorkBuddy 同一腾讯云账号体系）。**新注册用户默认有 2000 万 token 免费额度，无需绑卡**。AI 助手负责引导，创建动作必须用户本人完成（涉及登录与密钥保管）。
 
 引导步骤（AI 逐步执行，每步等用户确认）：
-1. 询问用户是否已有腾讯云账号：
+0.1 **先问用户是否已有现成的 key**：WorkBuddy 新用户可能**自动获得**一把 API key（无需手动创建）。让用户检查 WorkBuddy 客户端「设置 → 模型 → 自定义模型」或腾讯云 TokenHub API Key 管理页是否已存在 key：
+   - 有 → 让用户复制现有 key 给 AI，跳到第 1 步
+   - 没有 → 继续下面引导创建
+0.2 询问用户是否已有腾讯云账号：
    - 有 → 直接下一步
    - 没有 → 请用户打开 https://cloud.tencent.com 注册（AI 可以帮忙打开浏览器，但注册/登录由用户本人完成）
-2. **打开 API Key 管理页面**（不是 WorkBuddy 客户端个人中心，是腾讯云控制台 TokenHub 页面）：
+0.3 **打开 API Key 管理页面**（不是 WorkBuddy 客户端个人中心，是腾讯云控制台 TokenHub 页面）：
    - 国际版：https://console.tencentcloud.com/tokenhub/apikey
    - 国内版：登录 https://console.cloud.tencent.com 后在搜索框搜"TokenHub / API Key"
-3. 点击「**创建 API Key**」：
+0.4 点击「**创建 API Key**」：
    - 如果创建时有"访问范围/限定范围"选项，**务必勾选 `deepseek-v4-flash` 和 `deepseek-v4-pro`**
    - 其他选项按默认即可
-4. 创建完成后让用户**复制并妥善保管**这把 `ck_` 开头的 key（提示：不要外泄，token 会被用光）
-5. 用户把 key 粘贴给 AI 后，**只写入本机 config.json**，严禁写入聊天记录以外的任何公开位置
-6. 继续第 1 步部署
+0.5 创建完成后让用户**复制并妥善保管**这把 `ck_` 开头的 key（提示：不要外泄，token 会被用光）
+0.6 用户把 key 粘贴给 AI 后，**只写入本机 config.json**，严禁写入聊天记录以外的任何公开位置
+0.7 继续第 1 步部署
 
 **引导时给用户的参考信息**（官方文档依据）：
 - TokenHub 接口地址（若用户问"这 key 配什么地址"）：`https://tokenhub.tencentcloudmaas.com/v1/chat/completions`
