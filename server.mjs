@@ -148,11 +148,19 @@ function accumulateCompletion(chunks) {
 }
 
 // ---------- chat/completions ----------
+// 归一化消息：腾讯 copilot 网关不认 OpenAI 新角色 developer（返回 HTTP 500 + code 11128
+// "Illegal API invocation from an unapproved channel"，导致 dsh 等客户端报
+// "TRANSPORT: Stream ended without finish_reason"），统一转成标准 system 角色再转发。
+function normalizeMessages(messages) {
+  if (!Array.isArray(messages)) return messages;
+  return messages.map(m => (m && m.role === 'developer') ? { ...m, role: 'system' } : m);
+}
 async function handleChat(req, res, body) {
   const wantStream = body.stream === true;
   const upstream = resolveUpstream(body.model);
   log(`[chat] model=${body.model} -> upstream=${upstream.name}`);
-  const upstreamRes = await upstreamRequest({ ...body, stream: true }, upstream);
+  const upstreamBody = { ...body, messages: normalizeMessages(body.messages), stream: true };
+  const upstreamRes = await upstreamRequest(upstreamBody, upstream);
   if (upstreamRes.status >= 400) {
     const text = await upstreamRes.text().catch(() => '');
     sendJson(res, upstreamRes.status, { error: { message: `upstream ${upstream.name} ${upstreamRes.status}: ${text.slice(0, 300)}` } });
